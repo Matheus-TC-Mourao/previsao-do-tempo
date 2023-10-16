@@ -1,11 +1,11 @@
 import React from 'react';
 import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
 
-const Previsao = ({ cidade, data }) => {
+const Previsao = ({ city, data }) => {
 	return (
 		<div className="flex flex-col bg-white rounded p-4 w-full max-w-xs">
 			<div className="relative">
-				<span className="font-bold text-xl">{cidade}</span>
+				<span className="font-bold text-xl">{city}</span>
 				<div className="absolute -top-3 right-0 text-red-600">X</div>
 			</div>
 			<div className="mt-6 text-6xl self-center inline-flex items-center justify-center rounded-lg text-indigo-400 h-24 w-24">
@@ -27,7 +27,7 @@ const Previsao = ({ cidade, data }) => {
 			<div className="flex flex-row items-center justify-center mt-6">
 				<div className="font-medium text-6xl">{parseInt(data.main.temp)}°</div>
 				<div className="flex flex-col items-center ml-6">
-					<div>{data.weather[0].main}</div>
+					<div>{data.weather[0].description}</div>
 					<div className="mt-1 flex items-center justify-center">
 						<span className="text-sm">
 							<FaLongArrowAltUp />

@@ -1,48 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
+import { Search } from './search';
 import Previsao from './previsao';
 
 const Home = () => {
-	const [city, setCity] = useState('Manaus');
-	const [cidade, setCidade] = useState('');
-	const [data, setData] = useState(null);
-	const [loading, setLoading] = useState(true);
-	const [error, setError] = useState(null);
+	const [city, setCity] = useState('');
 
+	const [isVisible, setIsVisible] = useState(false);
 	const handleCity = (e) => {
 		setCity(e.target.value);
-	};
-
-	const Search = () => {
-		fetch(
-			`https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=64b17d3b41e199cec1f448974c6cda8e`
-		)
-			.then((response) => {
-				if (response.ok) {
-					return response.json();
-				}
-				throw response;
-			})
-			.then((data) => {
-				console.log(data);
-				setData(data);
-			})
-			.catch((error) => {
-				console.log('Este foi o erro: ', error);
-				setError(error);
-			})
-			.finally(() => {
-				setLoading(false);
-			});
-		setCidade(city);
-	};
-
-	const handlePrevisao = () => {
-		if (data !== null) {
-			return <Previsao props={(cidade, data)} />;
-		}
-		return <span>Tcheu pai</span>;
 	};
 
 	return (
@@ -56,13 +22,8 @@ const Home = () => {
 					{/* previsao */}
 					<div className="w-full relative">
 						<div className="flex items-center justify-center">
-							{handlePrevisao}
+							{isVisible && <Search city={city} />}
 						</div>
-						<div>{cidade}</div>
-						<div>Ícone</div>
-						{/* <div>
-							{data.main.temp} <span>{data.weather[0].main}</span>
-						</div> */}
 					</div>
 					{/* input */}
 					<div className="flex items-center md:w-[70%] w-[80%] h-12 bg-white">
@@ -75,7 +36,7 @@ const Home = () => {
 						<button
 							variant="text"
 							className=" h-full px-4"
-							onClick={() => Search()}
+							onClick={() => setIsVisible(!isVisible)}
 						>
 							<BsSearch className="text-xl" />
 						</button>
