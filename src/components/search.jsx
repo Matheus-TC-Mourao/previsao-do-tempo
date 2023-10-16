@@ -34,11 +34,7 @@ const Search = ({ city, isVisible, handleVisible }) => {
 	}, [isVisible]);
 
 	return (
-		<>
-			{loading && (
-				<Previsao data={data} city={city} handleVisible={handleVisible} />
-			)}
-		</>
+		<>{loading && <Previsao data={data} handleVisible={handleVisible} />}</>
 	);
 };
 

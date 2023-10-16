@@ -2,7 +2,7 @@ import React from 'react';
 import { FaLongArrowAltDown, FaLongArrowAltUp } from 'react-icons/fa';
 import { MdOutlineCancel } from 'react-icons/md';
 
-const Previsao = ({ city, data, handleVisible }) => {
+const Previsao = ({ data, handleVisible }) => {
 	return (
 		<div className="flex flex-col bg-white rounded p-4 w-full max-w-xs">
 			<div className="relative">
