@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import Previsao from './previsao';
 
-const Search = ({ city }) => {
+const Search = ({ city, isVisible, handleVisible }) => {
 	const [data, setData] = useState(null);
 	const [error, setError] = useState(null);
+	const [loading, setLoading] = useState(false);
 
 	const handleFetch = () => {
 		fetch(
@@ -24,14 +25,21 @@ const Search = ({ city }) => {
 				setError(error);
 			})
 			.finally(() => {
-				console.log('acabou!');
+				setLoading(true);
 			});
 	};
 
 	useEffect(() => {
 		handleFetch();
-	}, []);
-	return true;
+	}, [isVisible]);
+
+	return (
+		<>
+			{loading && (
+				<Previsao data={data} city={city} handleVisible={handleVisible} />
+			)}
+		</>
+	);
 };
 
 export { Search };

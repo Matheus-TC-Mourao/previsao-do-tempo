@@ -1,28 +1,37 @@
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import { Search } from './search';
-import Previsao from './previsao';
 
 const Home = () => {
 	const [city, setCity] = useState('');
-
 	const [isVisible, setIsVisible] = useState(false);
+
 	const handleCity = (e) => {
 		setCity(e.target.value);
+	};
+
+	const handleVisible = () => {
+		setIsVisible(false);
 	};
 
 	return (
 		<div>
 			<div className="max-w-xl mx-auto">
-				<div className="flex flex-col gap-5 items-center pb-14 border-b-2 border-white/70">
+				<div className="flex flex-col gap-5 items-center pt-5">
 					{/* titulo */}
-					<div className="text-white font-semibold md:text-[60px] text-[50px]">
+					<div className="text-white font-semibold md:text-[60px] text-[40px]">
 						Previsão do tempo
 					</div>
 					{/* previsao */}
 					<div className="w-full relative">
 						<div className="flex items-center justify-center">
-							{isVisible && <Search city={city} />}
+							{isVisible && (
+								<Search
+									city={city}
+									isVisible={isVisible}
+									handleVisible={handleVisible}
+								/>
+							)}
 						</div>
 					</div>
 					{/* input */}
